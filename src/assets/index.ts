@@ -7,3 +7,4 @@ export { MuseumLogoTwo } from "./logo/MuseumLogoTwo";
 export { BookMark } from "./icons/BookMark";
 export { ArrovIcon } from "./icons/ArrovIcon";
 export { HomeIcon } from "./icons/HomeIcon";
+export { BookMarkBig } from "./icons/BookMarkBig";

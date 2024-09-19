@@ -6,13 +6,55 @@ export const useImgService = () => {
 
   const _baseUrl = `https://api.artic.edu/api/v1/artworks`;
 
-  const getAllImgs = async () => {
-    const res = request<{
-      paliganation: Pagination;
-      data: Img[];
-    }>(_baseUrl);
+  const getAllImgs = async (page: number) => {
+    let pagination;
+    let data: ImgDataForWorks[] | undefined = [];
 
-    return (await res).data?.data.map(_tranformData);
+    const res = await request<{
+      pagination: Pagination;
+      data: Img[];
+    }>(_baseUrl + `?page=${page}`);
+
+    data = res.data?.data.map(_tranformData);
+    pagination = res.data?.pagination;
+
+    return { pagination, data };
+  };
+
+  const getOneImg = async (id: number) => {
+    const res = await request<{
+      data: Img;
+    }>(_baseUrl + `/${id}`);
+
+    if (res.data?.data) {
+      return _tranformData(res.data?.data);
+    }
+  };
+
+  const addImgToFavorites = (imgData: ImgDataForWorks) => {
+    const allFavoritesImgs = localStorage.getItem("favoriteImgArr");
+
+    if (allFavoritesImgs) {
+      const imgArr: ImgDataForWorks[] = JSON.parse(allFavoritesImgs);
+
+      const isImgExists = imgArr.some((img) => img.id === imgData.id);
+
+      if (!isImgExists) {
+        imgArr.push(imgData);
+        console.log(imgArr);
+        localStorage.setItem("favoriteImgArr", JSON.stringify(imgArr));
+      }
+    } else {
+      localStorage.setItem("favoriteImgArr", JSON.stringify([imgData]));
+    }
+  };
+
+  const getFavoritesImg = (): ImgDataForWorks[] | undefined => {
+    const allFavoritesImgs = localStorage.getItem("favoriteImgArr");
+
+    if (allFavoritesImgs) {
+      return JSON.parse(allFavoritesImgs);
+    }
   };
 
   const _tranformData = (res: Img): ImgDataForWorks => {
@@ -22,8 +64,20 @@ export const useImgService = () => {
       title: res.title,
       date_qualifier_title: res.date_qualifier_title,
       artist_titles: res.artist_titles,
+      dimensions: res.dimensions,
+      credit_line: res.credit_line,
+      description: res.description,
+      date_start: res.date_start,
+      date_end: res.date_end,
     };
   };
 
-  return { loading, error, getAllImgs };
+  return {
+    loading,
+    error,
+    getAllImgs,
+    addImgToFavorites,
+    getFavoritesImg,
+    getOneImg,
+  };
 };

@@ -8,84 +8,101 @@ import {
   ImgPreview,
   Input,
   SectionTitle,
-  SmallImgSkeleton,
+  Span,
+  Text,
 } from "../../components";
-
-import styles from "./main.module.scss";
 import { ImgDataForWorks } from "../../utils/model/imgModel";
+import { Loader } from "../../components/loader/Loader";
 
 export const Main: FC = () => {
-  const { error, loading, getAllImgs } = useImgService();
+  const { loading, getAllImgs } = useImgService();
   const [imgData, setImgData] = useState<ImgDataForWorks[]>();
 
+  const [page, setPage] = useState(1);
+  const [pageQty, setPageQty] = useState<number>();
+
   useEffect(() => {
-    const res = getAllImgs();
-    console.log(res.then(setImgData));
+    const res = getAllImgs(page);
+    res.then((item) => {
+      setImgData(item.data);
+      setPageQty(item.pagination?.total_pages);
+    });
   }, []);
 
   return (
     <>
-      <main className={styles.main}>
+      <Container padding="120px 0">
         <Container variant="container">
-          <h1 className={styles.main__title}>
-            let's find some <span>art</span> here!
-          </h1>
+          <Text
+            fontSize="64px"
+            fontWeight="700"
+            color="#393939"
+            textAlign="center"
+            width="684px"
+            margin="0 auto"
+          >
+            let's find some <Span color="var(--main-color)">art</Span> here!
+          </Text>
 
           <Input placeholder="Search art, artist, work..." />
         </Container>
-      </main>
+      </Container>
 
-      <section className={styles.galery}>
+      <Container>
         <Container variant="container">
           <SectionTitle
             title={"Topics for you"}
             subTitle={"Our special gallery "}
           />
-          <Container variant="flex-container">
+          <Container variant="flex-container" margin="40px 0 0 0">
             <ImgCard />
             <ImgCard />
             <ImgCard />
           </Container>
-          <div className={styles.galery__nav}>
-            <div
-              className={`${styles.galery__nav_active} ${styles.galery__nav_item}`}
-            >
+          <Container
+            display="flex"
+            justifyContent="end"
+            alignItems="center"
+            gap="10px"
+            margin="95px 0 0 0"
+          >
+            <Text fontSize="18px" fontWeight="300" color="var(--dark-color)">
               1
-            </div>
-            <div className={styles.galery__nav_item}>2</div>
-            <div className={styles.galery__nav_item}>3</div>
-            <div className={styles.galery__nav_item}>4</div>
-            <div>
-              <ArrovIcon />
-            </div>
-          </div>
+            </Text>
+            <Text fontSize="18px" fontWeight="300" color="var(--dark-color)">
+              2
+            </Text>
+            <Text fontSize="18px" fontWeight="300" color="var(--dark-color)">
+              3
+            </Text>
+            ...
+            <Text fontSize="18px" fontWeight="300" color="var(--dark-color)">
+              {pageQty}
+            </Text>
+            <ArrovIcon />
+          </Container>
         </Container>
-      </section>
+      </Container>
 
-      <section className={styles.other}>
+      <Container padding="120px 0">
         <Container variant="container">
           <SectionTitle
             title={"Other works for you"}
             subTitle={"Here some more "}
           />
-
-          <Container
-            variant="grid-container"
-            className={styles.other__container}
-          >
-            <SmallImgSkeleton />
-            {loading ? (
-              <>
-                <SmallImgSkeleton /> <SmallImgSkeleton /> <SmallImgSkeleton />
-              </>
-            ) : (
-              imgData?.map((item) => {
-                return <ImgPreview key={item.id} {...item} />;
-              })
-            )}
-          </Container>
+          {loading ? (
+            <>
+              <Loader />
+            </>
+          ) : (
+            <Container variant="grid-container" margin="40px 0 0 0">
+              {imgData?.map((item) => {
+                return <ImgPreview {...item} key={item.id} />;
+              })}
+            </Container>
+          )}
         </Container>
-      </section>
+      </Container>
     </>
   );
 };

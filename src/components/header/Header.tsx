@@ -1,9 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FC, useEffect, useState } from "react";
-import { Container } from "../container/Container";
 import { BookMark, HomeIcon, MuseumLogo } from "../../assets";
 
-import styles from "./header.module.scss";
+import { Container, Text } from "..";
 
 export const Header: FC = () => {
   const [isHome, setHome] = useState<React.ReactNode | undefined>(<HomeLink />);
@@ -34,13 +33,22 @@ export const Header: FC = () => {
 
             <Container display="flex" alignItems="center" gap="16px">
               {isHome}
-              <div
-                className={styles.header__favorites_item}
+              <Container
+                display="flex"
+                alignItems="center"
+                gap="5px"
                 onClick={() => navigate("/favorites")}
               >
                 <BookMark />
-                Your favorites
-              </div>
+                <Text
+                  fontSize="18px"
+                  fontWeight="400"
+                  color="var(--light-color)"
+                  cursor="pointer"
+                >
+                  Your favorites
+                </Text>
+              </Container>
             </Container>
           </Container>
         </Container>
@@ -52,12 +60,21 @@ export const Header: FC = () => {
 const HomeLink = () => {
   const navigate = useNavigate();
   return (
-    <div
+    <Container
+      display="flex"
+      alignItems="center"
+      gap="5px"
       onClick={() => navigate("/")}
-      className={styles.header__favorites_item}
     >
       <HomeIcon />
-      Home
-    </div>
+      <Text
+        fontSize="18px"
+        fontWeight="400"
+        color="var(--light-color)"
+        cursor="pointer"
+      >
+        Home
+      </Text>
+    </Container>
   );
 };

@@ -13,6 +13,11 @@ export interface ImgDataForWorks {
   title: string;
   date_qualifier_title: string;
   artist_titles: string[];
+  dimensions?: string;
+  credit_line?: string;
+  description?: string;
+  date_start?: number;
+  date_end?: number;
 }
 
 export interface Img {

@@ -6,4 +6,5 @@ export { ImgCard } from "./imgCard/ImgCard";
 export { ImgPreview } from "./imgPreview/ImgPreview";
 export { Footer } from "./footer/Footer";
 export { Button } from "./button/Button";
-export { SmallImgSkeleton } from "./skeleton/SmallImgSkeleton";
+export { Text } from "./text/Text";
+export { Span } from "./span/Span";
