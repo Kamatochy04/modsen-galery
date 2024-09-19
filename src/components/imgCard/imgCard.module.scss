@@ -1,0 +1,48 @@
+.card {
+  width: 387px;
+  height: 514px;
+
+  position: relative;
+  &__img {
+    height: 444px;
+    width: 100%;
+    background: #000;
+  }
+  &__inf {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: #fff;
+
+    border: 1px solid #f0f1f1;
+    padding: 32px 24px;
+
+    width: 334px;
+    bottom: 0;
+  }
+}
+
+.img {
+  &_name {
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 150%;
+    letter-spacing: -0.03em;
+    color: var(--dark-color);
+  }
+  &_author {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 171%;
+    letter-spacing: -0.01em;
+    color: var(--second-color);
+  }
+  &_status {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 171%;
+    letter-spacing: -0.01em;
+    margin-top: 8px;
+  }
+}

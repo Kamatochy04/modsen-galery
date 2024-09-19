@@ -1,0 +1,35 @@
+.preview {
+  padding: 16px 13px;
+  // width: 416px;
+  border: 1px solid #f0f1f1;
+  background: var(--light-color);
+  &__inf {
+    width: 215px;
+  }
+  &_name {
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 150%;
+    letter-spacing: -0.03em;
+    color: var(--dark-color);
+  }
+  &_author {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 171%;
+    letter-spacing: -0.01em;
+    color: var(--second-color);
+  }
+  &_status {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 171%;
+    letter-spacing: -0.01em;
+    margin-top: 8px;
+  }
+  &__img {
+    width: 80px;
+    aspect-ratio: 1/1;
+    background: #000;
+  }
+}
