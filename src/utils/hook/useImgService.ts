@@ -6,14 +6,14 @@ export const useImgService = () => {
 
   const _baseUrl = `https://api.artic.edu/api/v1/artworks`;
 
-  const getAllImgs = async (page: number) => {
+  const getAllImgs = async (page: number, limit?: number) => {
     let pagination;
     let data: ImgDataForWorks[] | undefined = [];
 
     const res = await request<{
       pagination: Pagination;
       data: Img[];
-    }>(_baseUrl + `?page=${page}`);
+    }>(_baseUrl + `?page=${page}&limit=${limit}`);
 
     data = res.data?.data.map(_tranformData);
     pagination = res.data?.pagination;

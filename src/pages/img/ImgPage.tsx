@@ -3,10 +3,11 @@ import { FC, useEffect, useState } from "react";
 import { Container } from "../../components";
 import { useImgService } from "../../utils/hook/useImgService";
 
-import styles from "./img.module.scss";
 import { ImgDataForWorks } from "../../utils/model/imgModel";
 import { useData } from "../Router";
 import { Loader } from "../../components/loader/Loader";
+
+import styles from "./img.module.scss";
 
 export const ImgPage: FC = () => {
   const { getOneImg, loading } = useImgService();
@@ -14,8 +15,10 @@ export const ImgPage: FC = () => {
   const { imgId } = useData();
 
   useEffect(() => {
-    console.log(imgId);
-    getOneImg(imgId).then(setImgData);
+    getOneImg(imgId).then((data) => {
+      setImgData(data);
+      console.log(data);
+    });
   }, []);
 
   return (
@@ -33,11 +36,11 @@ export const ImgPage: FC = () => {
 
             <div className={styles.img__inf}>
               <div className={styles.img__top}>
-                <h3 className={styles.img__top_title}>
-                  {imgData?.date_qualifier_title}
-                </h3>
+                <h3 className={styles.img__top_title}>{imgData?.title}</h3>
 
-                <p className={styles.img__top_subtitle}>{imgData?.title}</p>
+                <p className={styles.img__top_subtitle}>
+                  {imgData?.artist_titles}
+                </p>
                 <p className={styles.img__top_date}>
                   {imgData?.date_start} - {imgData?.date_end}
                 </p>

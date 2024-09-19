@@ -1,14 +1,15 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 
 import { BookMark } from "../../assets";
 import { Button } from "../button/Button";
 import { Container } from "../container/Container";
 
-import styles from "./imgPreview.module.scss";
 import { ImgDataForWorks } from "../../utils/model/imgModel";
 import { useImgService } from "../../utils/hook/useImgService";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../pages/Router";
+
+import styles from "./imgPreview.module.scss";
 
 export const ImgPreview: FC<ImgDataForWorks> = ({
   id,
@@ -19,7 +20,7 @@ export const ImgPreview: FC<ImgDataForWorks> = ({
 }) => {
   const { addImgToFavorites } = useImgService();
 
-  const { setImgId, imgId } = useData();
+  const { setImgId } = useData();
   const navigate = useNavigate();
 
   const handelClick = () => {
@@ -33,7 +34,6 @@ export const ImgPreview: FC<ImgDataForWorks> = ({
   };
 
   const toImgInf = (id: number) => {
-    console.log(id);
     setImgId(id);
     navigate(`/${id}`);
   };
@@ -49,8 +49,10 @@ export const ImgPreview: FC<ImgDataForWorks> = ({
 
         <div className={styles.preview__inf}>
           <p className={styles.preview_name}>{title}</p>
-          {artist_titles.map((item) => (
-            <p className={styles.preview_author}>{item}</p>
+          {artist_titles.map((item, id) => (
+            <p key={id} className={styles.preview_author}>
+              {item}
+            </p>
           ))}
 
           <p className={styles.preview_status}>{date_qualifier_title}</p>

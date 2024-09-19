@@ -4,23 +4,24 @@ type ContainreVariant =
   | "container"
   | "flex-container"
   | "grid-container"
-  | "loader";
+  | "loader"
+  | "img-card";
 
 export type ContainerStyledProps = {
   padding?: string;
   margin?: string;
   display?: string;
-  alignItems?: string;
+  alignitems?: string;
   gap?: string;
   background?: string;
   variant?: ContainreVariant;
-  justifyContent?: string;
+  justifycontent?: string;
 };
 
 export const StyledContainer = styled.div<ContainerStyledProps>`
   display: ${(props) => props.display};
-  justify-content: ${(props) => props.justifyContent};
-  align-items: ${(props) => props.alignItems};
+  justify-content: ${(props) => props.justifycontent};
+  align-items: ${(props) => props.alignitems};
   gap: ${(props) => props.gap};
 
   padding: ${(props) => props.padding};
@@ -32,7 +33,7 @@ export const StyledContainer = styled.div<ContainerStyledProps>`
     switch (props.variant) {
       case "flex-container":
         styles = `
-        position: relative;
+          position: relative;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -67,6 +68,17 @@ export const StyledContainer = styled.div<ContainerStyledProps>`
           align-items: center;
           justify-content: center;
         `;
+        break;
+      case "img-card":
+        styles = `
+            width: 334px;
+            height: 132px;
+            position: absalut;
+  
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          `;
         break;
       default:
     }

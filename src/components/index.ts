@@ -8,3 +8,5 @@ export { Footer } from "./footer/Footer";
 export { Button } from "./button/Button";
 export { Text } from "./text/Text";
 export { Span } from "./span/Span";
+export { Galery } from "./galery/Galery";
+export { ErrorBoundary } from "./ErrorBoudery/ErrorBoudery";

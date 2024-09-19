@@ -26,7 +26,7 @@ export const Favorites: FC = () => {
           fontSize="64px"
           fontWeight="700"
           color="#393939"
-          textAlign="center"
+          textalign="center"
           width="420px"
           margin="0 auto 120px auto"
         >
@@ -42,7 +42,7 @@ export const Favorites: FC = () => {
             fontSize="54px"
             fontWeight="700"
             color="#c9c9c9b9"
-            textAlign="center"
+            textalign="center"
             width="100%"
             margin="120px auto 120px auto"
           >

@@ -31,11 +31,11 @@ export const Header: FC = () => {
               <MuseumLogo />
             </Link>
 
-            <Container display="flex" alignItems="center" gap="16px">
+            <Container display="flex" alignitems="center" gap="16px">
               {isHome}
               <Container
                 display="flex"
-                alignItems="center"
+                alignitems="center"
                 gap="5px"
                 onClick={() => navigate("/favorites")}
               >
@@ -62,7 +62,7 @@ const HomeLink = () => {
   return (
     <Container
       display="flex"
-      alignItems="center"
+      alignitems="center"
       gap="5px"
       onClick={() => navigate("/")}
     >
