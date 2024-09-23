@@ -3,10 +3,9 @@ import { useHttp } from "./useHttp";
 
 export const useImgService = () => {
   const { loading, request, error } = useHttp();
-
   const _baseUrl = `https://api.artic.edu/api/v1/artworks`;
 
-  const getAllImgs = async (page: number, limit?: number) => {
+  const getAllImgs = async (page?: number, limit?: number) => {
     let pagination;
     let data: ImgDataForWorks[] | undefined = [];
 

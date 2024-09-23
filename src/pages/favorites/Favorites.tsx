@@ -1,15 +1,8 @@
 import { FC, useEffect, useState } from "react";
 
-import {
-  Container,
-  ImgPreview,
-  SectionTitle,
-  Span,
-  Text,
-} from "../../components";
-import { useImgService } from "../../utils/hook/useImgService";
-import { ImgDataForWorks } from "../../utils/model/imgModel";
-import { BookMarkBig } from "../../assets";
+import { Container, ImgPreview, SectionTitle, Span, Text } from "@/components";
+import { ImgDataForWorks, useImgService } from "@/utils";
+import { BookMarkBig } from "@/assets";
 
 export const Favorites: FC = () => {
   const [favoritesImg, setFavoritesImg] = useState<ImgDataForWorks[]>();

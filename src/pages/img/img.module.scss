@@ -61,6 +61,10 @@
       font-weight: 400;
       font-size: 16px;
       color: var(--dark-color);
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
       span {
         color: var(--second-color);
       }

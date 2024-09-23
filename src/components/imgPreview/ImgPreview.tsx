@@ -1,12 +1,10 @@
 import { FC } from "react";
-
-import { BookMark } from "../../assets";
-import { Button } from "../button/Button";
-import { Container } from "../container/Container";
-
-import { ImgDataForWorks } from "../../utils/model/imgModel";
-import { useImgService } from "../../utils/hook/useImgService";
 import { useNavigate } from "react-router-dom";
+
+import { Container, Button } from "..";
+
+import { ImgDataForWorks, useImgService } from "@/utils";
+import { BookMark } from "@/assets";
 import { useData } from "../../pages/Router";
 
 import styles from "./imgPreview.module.scss";
@@ -23,13 +21,14 @@ export const ImgPreview: FC<ImgDataForWorks> = ({
   const { setImgId } = useData();
   const navigate = useNavigate();
 
-  const handelClick = () => {
+  const handelClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     addImgToFavorites({
-      id: id,
-      thumbnail: thumbnail,
-      title: title,
-      date_qualifier_title: date_qualifier_title,
-      artist_titles: artist_titles,
+      id,
+      thumbnail,
+      title,
+      date_qualifier_title,
+      artist_titles,
     });
   };
 
@@ -39,8 +38,8 @@ export const ImgPreview: FC<ImgDataForWorks> = ({
   };
 
   return (
-    <div className={styles.preview} onClick={() => toImgInf(id)}>
-      <Container variant="flex-container">
+    <div className={styles.preview}>
+      <Container variant="flex-container" onClick={() => toImgInf(id)}>
         <img
           src={thumbnail.lqip}
           alt={thumbnail.alt_text}
@@ -58,7 +57,7 @@ export const ImgPreview: FC<ImgDataForWorks> = ({
           <p className={styles.preview_status}>{date_qualifier_title}</p>
         </div>
 
-        <Button onClick={() => handelClick()}>
+        <Button onClick={handelClick}>
           <BookMark />
         </Button>
       </Container>

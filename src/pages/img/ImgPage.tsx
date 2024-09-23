@@ -1,11 +1,9 @@
 import { FC, useEffect, useState } from "react";
 
-import { Container } from "../../components";
-import { useImgService } from "../../utils/hook/useImgService";
-
-import { ImgDataForWorks } from "../../utils/model/imgModel";
 import { useData } from "../Router";
-import { Loader } from "../../components/loader/Loader";
+
+import { ImgDataForWorks, useImgService } from "@/utils";
+import { Loader, Container } from "@/components";
 
 import styles from "./img.module.scss";
 
@@ -61,7 +59,7 @@ export const ImgPage: FC = () => {
                   </li>
                   <li className={styles.img__list_item}>
                     <span>Description: </span>
-                    {imgData?.dimensions}
+                    {imgData?.description}
                   </li>
 
                   <li className={styles.img__list_item}>

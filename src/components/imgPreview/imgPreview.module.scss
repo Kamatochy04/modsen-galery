@@ -12,6 +12,11 @@
     line-height: 150%;
     letter-spacing: -0.03em;
     color: var(--dark-color);
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
   }
   &_author {
     font-weight: 400;
@@ -19,6 +24,11 @@
     line-height: 171%;
     letter-spacing: -0.01em;
     color: var(--second-color);
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
   }
   &_status {
     font-weight: 700;
@@ -26,6 +36,11 @@
     line-height: 171%;
     letter-spacing: -0.01em;
     margin-top: 8px;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
   }
   &__img {
     width: 80px;

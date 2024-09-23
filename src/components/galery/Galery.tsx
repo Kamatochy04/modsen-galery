@@ -4,19 +4,35 @@ import { ArrovIcon } from "../../assets";
 import { ImgDataForWorks } from "../../utils/model/imgModel";
 import { useImgService } from "../../utils/hook/useImgService";
 import { Loader } from "../loader/Loader";
+import { generatePaginationItems } from "./generatePAgination";
 
 export const Galery: FC = () => {
-  const [page, setPage] = useState(1);
-  const [pageQty, setPageQty] = useState<number>();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState<number>(112312);
+  const [pagesArr, setPageArr] = useState<(number | string)[]>([]);
   const [imgData, setImgData] = useState<ImgDataForWorks[]>();
   const { loading, getAllImgs } = useImgService();
+  const limit = 3;
 
   useEffect(() => {
-    const res = getAllImgs(page, 3);
+    const res = getAllImgs(currentPage, limit);
     res.then((item) => {
       setImgData(item.data);
+      if (item.pagination?.total_pages) {
+        setTotalPages(item.pagination?.total_pages);
+      }
     });
   }, []);
+
+  useEffect(() => {
+    setPageArr(generatePaginationItems({ currentPage, totalPages }));
+  }, [currentPage, totalPages]);
+  const getNewImgs = (page: number) => {
+    getAllImgs(page, limit).then((res) => {
+      setCurrentPage(page);
+      setImgData(res.data);
+    });
+  };
 
   return (
     <Container>
@@ -42,19 +58,22 @@ export const Galery: FC = () => {
           gap="10px"
           margin="95px 0 0 0"
         >
-          <Text fontSize="18px" fontWeight="300" color="var(--dark-color)">
-            1
-          </Text>
-          <Text fontSize="18px" fontWeight="300" color="var(--dark-color)">
-            2
-          </Text>
-          <Text fontSize="18px" fontWeight="300" color="var(--dark-color)">
-            3
-          </Text>
-          ...
-          <Text fontSize="18px" fontWeight="300" color="var(--dark-color)">
-            {pageQty}
-          </Text>
+          {pagesArr.map((item, id) => {
+            return (
+              <Text
+                key={id}
+                fontSize="18px"
+                fontWeight="300"
+                color="var(--dark-color)"
+              >
+                {typeof item === "number" ? (
+                  <button onClick={() => getNewImgs(item)}>{item}</button>
+                ) : (
+                  <span>{item}</span>
+                )}
+              </Text>
+            );
+          })}
           <ArrovIcon />
         </Container>
       </Container>
