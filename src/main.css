@@ -18,6 +18,8 @@
 
 input {
   outline: none;
+  overflow: hidden;
+  border: none;
 }
 a {
   text-decoration: none;
@@ -46,9 +48,4 @@ button {
 
 .app-section {
   flex-grow: 1;
-}
-
-input {
-  outline: none;
-  overflow: hidden;
 }

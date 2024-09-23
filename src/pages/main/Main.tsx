@@ -54,7 +54,7 @@ export const Main: FC = () => {
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const filteredValue = event.target.value.replace(/[^a-zA-Z]/g, "");
+    const filteredValue = event.target.value.replace(/[^a-zA-Z0-9\s]/g, "");
     setQuery(filteredValue);
   };
 
