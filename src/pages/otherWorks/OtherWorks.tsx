@@ -4,10 +4,9 @@ import {
   ErrorBoundary,
   ImgPreview,
   SectionTitle,
-} from "../../components";
-import { Loader } from "../../components/loader/Loader";
-import { ImgDataForWorks } from "../../utils/model/imgModel";
-import { useImgService } from "../../utils/hook/useImgService";
+  Loader,
+} from "@/components";
+import { ImgDataForWorks, useImgService } from "@/utils";
 
 export const OtherWorks: FC = () => {
   const { loading, getAllImgs } = useImgService();

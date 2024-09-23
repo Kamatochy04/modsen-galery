@@ -8,13 +8,17 @@ import { BookMark } from "@/assets";
 import { useData } from "../../pages/Router";
 
 import styles from "./imgPreview.module.scss";
-
-export const ImgPreview: FC<ImgDataForWorks> = ({
+type ImgPreview = {
+  removeImg: (event: React.MouseEvent<HTMLButtonElement>, id: number) => void;
+};
+export const ImgPreview: FC<ImgDataForWorks & ImgPreview> = ({
   id,
   thumbnail,
   title,
   date_qualifier_title,
   artist_titles,
+  isFavorite,
+  removeImg,
 }) => {
   const { addImgToFavorites } = useImgService();
 
@@ -56,10 +60,16 @@ export const ImgPreview: FC<ImgDataForWorks> = ({
 
           <p className={styles.preview_status}>{date_qualifier_title}</p>
         </div>
-
-        <Button onClick={handelClick}>
-          <BookMark />
-        </Button>
+        <div className={styles.buttons}>
+          <Button onClick={handelClick}>
+            <BookMark />
+          </Button>
+          {isFavorite ? (
+            <button className={styles.clouse} onClick={(e) => removeImg(e, id)}>
+              Удалить
+            </button>
+          ) : null}
+        </div>
       </Container>
     </div>
   );

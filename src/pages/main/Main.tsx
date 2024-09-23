@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { FC, useEffect, useState } from "react";
+
+import { OtherWorks } from "../otherWorks/OtherWorks";
+import { useData } from "../Router";
 
 import {
   Container,
@@ -8,12 +12,9 @@ import {
   Span,
   Text,
 } from "@/components";
-import { OtherWorks } from "../otherWorks/OtherWorks";
 import { ImgDataForWorks, useImgService } from "@/utils";
 
 import styles from "./main.module.scss";
-import { useNavigate } from "react-router-dom";
-import { useData } from "../Router";
 
 export const Main: FC = () => {
   const [query, setQuery] = useState<string>("");
@@ -43,7 +44,6 @@ export const Main: FC = () => {
             .toLocaleUpperCase()
             .includes(debouncedQuery.toLocaleUpperCase())
         ) || [];
-      console.log(newArr);
       setSearchArr(newArr);
     });
   }, [query]);
@@ -51,6 +51,11 @@ export const Main: FC = () => {
   const toImgInf = (id: number) => {
     setImgId(id);
     navigate(`/${id}`);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const filteredValue = event.target.value.replace(/[^a-zA-Z]/g, "");
+    setQuery(filteredValue);
   };
 
   return (
@@ -72,7 +77,7 @@ export const Main: FC = () => {
             <Input
               placeholder="Search art, artist, work..."
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => handleInputChange(e)}
             />
             {query.length > 0 && (
               <div className={styles.search_box}>

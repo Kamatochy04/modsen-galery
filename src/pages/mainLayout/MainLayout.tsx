@@ -5,12 +5,13 @@ import { Footer, Header } from "@/components";
 
 export const MainLayout: FC = () => {
   return (
-    <>
+    <div className="app">
       <Header />
-
-      <Outlet />
+      <section className="app-section">
+        <Outlet />
+      </section>
 
       <Footer />
-    </>
+    </div>
   );
 };

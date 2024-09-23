@@ -39,12 +39,29 @@ export const useImgService = () => {
       const isImgExists = imgArr.some((img) => img.id === imgData.id);
 
       if (!isImgExists) {
+        imgData.isFavorite = true;
         imgArr.push(imgData);
-        console.log(imgArr);
         localStorage.setItem("favoriteImgArr", JSON.stringify(imgArr));
       }
     } else {
       localStorage.setItem("favoriteImgArr", JSON.stringify([imgData]));
+    }
+  };
+
+  const removeImgById = (id: number) => {
+    const allFavoritesImgs = localStorage.getItem("favoriteImgArr");
+
+    if (allFavoritesImgs) {
+      const imgArr: ImgDataForWorks[] = JSON.parse(allFavoritesImgs);
+
+      const updatedImgs = imgArr.filter((item) => {
+        if (item.id !== id) {
+          return item;
+        } else {
+          item.isFavorite = false;
+        }
+      });
+      localStorage.setItem("favoriteImgArr", JSON.stringify(updatedImgs));
     }
   };
 
@@ -78,5 +95,6 @@ export const useImgService = () => {
     addImgToFavorites,
     getFavoritesImg,
     getOneImg,
+    removeImgById,
   };
 };

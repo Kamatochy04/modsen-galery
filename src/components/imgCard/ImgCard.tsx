@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { BookMark } from "../../assets";
-import { Button } from "../button/Button";
-import { useData } from "../../pages/Router";
-import { Container } from "../container/Container";
-import { ImgDataForWorks } from "../../utils/model/imgModel";
+import { BookMark } from "@/assets";
+import { useData } from "@/pages/Router";
+import { Container, Button } from "..";
+import { ImgDataForWorks, useImgService } from "@/utils";
 
 import styles from "./imgCard.module.scss";
 
@@ -18,11 +17,23 @@ export const ImgCard: FC<ImgDataForWorks> = ({
 }) => {
   const navigate = useNavigate();
 
+  const { addImgToFavorites } = useImgService();
   const { setImgId } = useData();
 
   const toImgInf = (id: number) => {
     setImgId(id);
     navigate(`/${id}`);
+  };
+
+  const handelClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    addImgToFavorites({
+      id,
+      thumbnail,
+      title,
+      date_qualifier_title,
+      artist_titles,
+    });
   };
 
   return (
@@ -46,7 +57,7 @@ export const ImgCard: FC<ImgDataForWorks> = ({
 
           <p className={styles.img_status}>{date_qualifier_title}</p>
         </div>
-        <Button>
+        <Button onClick={handelClick}>
           <BookMark />
         </Button>
       </Container>

@@ -1,0 +1,22 @@
+.form {
+  padding: 40px;
+  margin: 50px auto;
+  background: #0000000c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  border-radius: 10px;
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  button {
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #e6a90465;
+  }
+}

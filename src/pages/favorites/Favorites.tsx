@@ -6,12 +6,19 @@ import { BookMarkBig } from "@/assets";
 
 export const Favorites: FC = () => {
   const [favoritesImg, setFavoritesImg] = useState<ImgDataForWorks[]>();
-  const { getFavoritesImg } = useImgService();
+  const { getFavoritesImg, removeImgById } = useImgService();
 
   useEffect(() => {
     setFavoritesImg(getFavoritesImg());
-  }, []);
+  }, [favoritesImg]);
 
+  const removeImg = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    id: number
+  ) => {
+    event.stopPropagation();
+    removeImgById(id);
+  };
   return (
     <Container padding="120px 0" background="#fff">
       <Container variant="container">
@@ -20,7 +27,7 @@ export const Favorites: FC = () => {
           fontWeight="700"
           color="#393939"
           textalign="center"
-          width="420px"
+          width="430px"
           margin="0 auto 120px auto"
         >
           Here are your
@@ -44,7 +51,7 @@ export const Favorites: FC = () => {
         ) : (
           <Container variant="grid-container" padding="40px 0 0 0">
             {favoritesImg?.map((item) => (
-              <ImgPreview key={item.id} {...item} />
+              <ImgPreview key={item.id} {...item} removeImg={removeImg} />
             ))}
           </Container>
         )}

@@ -37,7 +37,7 @@ export const StyledContainer = styled.div<ContainerStyledProps>`
           display: flex;
           align-items: center;
           justify-content: space-between;
-
+          flex-wrap: wrap;
         `;
         break;
       case "grid-container":

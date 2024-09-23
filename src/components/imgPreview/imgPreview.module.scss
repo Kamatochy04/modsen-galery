@@ -48,3 +48,20 @@
     background: #000;
   }
 }
+
+.clouse {
+  padding: 5px 10px;
+  background: #ff0000bb;
+
+  color: #fff;
+  transition: all 0.4s;
+  &:hover {
+    background: #771818a8;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

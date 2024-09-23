@@ -18,6 +18,7 @@ export interface ImgDataForWorks {
   description?: string;
   date_start?: number;
   date_end?: number;
+  isFavorite?: boolean;
 }
 
 export interface Img {
