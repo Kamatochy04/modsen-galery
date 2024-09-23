@@ -9,7 +9,7 @@ import { useData } from "../../pages/Router";
 
 import styles from "./imgPreview.module.scss";
 type ImgPreview = {
-  removeImg: (event: React.MouseEvent<HTMLButtonElement>, id: number) => void;
+  removeImg?: (event: React.MouseEvent<HTMLButtonElement>, id: number) => void;
 };
 export const ImgPreview: FC<ImgDataForWorks & ImgPreview> = ({
   id,
@@ -65,7 +65,14 @@ export const ImgPreview: FC<ImgDataForWorks & ImgPreview> = ({
             <BookMark />
           </Button>
           {isFavorite ? (
-            <button className={styles.clouse} onClick={(e) => removeImg(e, id)}>
+            <button
+              className={styles.clouse}
+              onClick={(e) => {
+                if (removeImg) {
+                  removeImg(e, id);
+                }
+              }}
+            >
               Удалить
             </button>
           ) : null}
