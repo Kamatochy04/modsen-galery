@@ -7,6 +7,7 @@ export const MainLayout: FC = () => {
   return (
     <div className="app">
       <Header />
+
       <section className="app-section">
         <Outlet />
       </section>

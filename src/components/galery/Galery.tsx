@@ -2,8 +2,14 @@ import { FC, useEffect, useState } from "react";
 
 import { generatePaginationItems } from "./generatePAgination";
 
-import { Container, ImgCard, SectionTitle, Text, Loader } from "..";
-import { ArrovIcon } from "@/assets";
+import {
+  Container,
+  ImgCard,
+  SectionTitle,
+  Loader,
+  ErrorBoundary,
+  PaginationNavigate,
+} from "..";
 import { ImgDataForWorks, useImgService } from "@/utils";
 
 import styles from "./galery.module.scss";
@@ -98,40 +104,19 @@ export const Galery: FC = () => {
 
           <button type="submit">Найти</button>
         </form>
+        <ErrorBoundary>
+          {loading ? (
+            <Loader />
+          ) : (
+            <Container variant="flex-container" margin="40px 0 0 0">
+              {imgData?.map((item) => (
+                <ImgCard key={item.id} {...item} />
+              ))}
+            </Container>
+          )}
+        </ErrorBoundary>
 
-        {loading ? (
-          <Loader />
-        ) : (
-          <Container variant="flex-container" margin="40px 0 0 0">
-            {imgData?.map((item) => (
-              <ImgCard key={item.id} {...item} />
-            ))}
-          </Container>
-        )}
-
-        <Container
-          display="flex"
-          justifycontent="end"
-          alignitems="center"
-          gap="10px"
-          margin="95px 0 0 0"
-        >
-          {pagesArr.map((item, id) => (
-            <Text
-              key={id}
-              fontSize="18px"
-              fontWeight="300"
-              color="var(--dark-color)"
-            >
-              {typeof item === "number" ? (
-                <button onClick={() => getNewImgs(item)}>{item}</button>
-              ) : (
-                <span>{item}</span>
-              )}
-            </Text>
-          ))}
-          <ArrovIcon />
-        </Container>
+        <PaginationNavigate pagesArr={pagesArr} currentPage={currentPage} getNewImgs={getNewImgs} />
       </Container>
     </Container>
   );

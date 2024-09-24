@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import { Container, Button } from "..";
 
-import { ImgDataForWorks, useImgService } from "@/utils";
+import { ImgDataForWorks, useData, useImgService } from "@/utils";
 import { BookMark } from "@/assets";
-import { useData } from "../../pages/Router";
 
 import styles from "./imgPreview.module.scss";
 type ImgPreview = {

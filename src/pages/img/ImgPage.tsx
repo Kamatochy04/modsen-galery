@@ -1,8 +1,6 @@
 import { FC, useEffect, useState } from "react";
 
-import { useData } from "../Router";
-
-import { ImgDataForWorks, useImgService } from "@/utils";
+import { ImgDataForWorks, useData, useImgService } from "@/utils";
 import { Loader, Container } from "@/components";
 
 import styles from "./img.module.scss";

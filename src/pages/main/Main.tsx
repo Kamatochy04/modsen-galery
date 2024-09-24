@@ -2,17 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { FC, useEffect, useState } from "react";
 
 import { OtherWorks } from "../otherWorks/OtherWorks";
-import { useData } from "../Router";
-
-import {
-  Container,
-  ErrorBoundary,
-  Galery,
-  Input,
-  Span,
-  Text,
-} from "@/components";
-import { ImgDataForWorks, useImgService } from "@/utils";
+import { Container, Galery, Input, Span, Text } from "@/components";
+import { ImgDataForWorks, useData, useImgService } from "@/utils";
 
 import styles from "./main.module.scss";
 
@@ -62,14 +53,7 @@ export const Main: FC = () => {
     <>
       <Container padding="120px 0">
         <Container variant="container">
-          <Text
-            fontSize="64px"
-            fontWeight="700"
-            color="#393939"
-            textalign="center"
-            width="684px"
-            margin="0 auto"
-          >
+          <Text variant="main-title">
             let's find some <Span color="var(--main-color)">art</Span> here!
           </Text>
 
@@ -80,7 +64,7 @@ export const Main: FC = () => {
               onChange={(e) => handleInputChange(e)}
             />
             {query.length > 0 && (
-              <div className={styles.search_box}>
+              <Container variant="search-box">
                 {searchArr.map((item, id) => (
                   <div
                     className={styles.search_box__item}
@@ -90,19 +74,18 @@ export const Main: FC = () => {
                     <img
                       src={item.thumbnail.lqip}
                       alt={item.thumbnail.alt_text}
+                      style={{ height: "100%", width: "25px" }}
                     />
                     <p className={styles.search_box__item_name}>{item.title}</p>
                   </div>
                 ))}
-              </div>
+              </Container>
             )}
           </Container>
         </Container>
       </Container>
 
-      <ErrorBoundary>
-        <Galery />
-      </ErrorBoundary>
+      <Galery />
 
       <OtherWorks />
     </>

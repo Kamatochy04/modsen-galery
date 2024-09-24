@@ -10,5 +10,6 @@ export { Text } from "./text/Text";
 export { Span } from "./span/Span";
 export { Galery } from "./galery/Galery";
 export { Loader } from "./loader/Loader";
+export { PaginationNavigate } from "./paginationNavigate/PaginationNavigate";
 
 export { ErrorBoundary } from "./ErrorBoudery/ErrorBoudery";

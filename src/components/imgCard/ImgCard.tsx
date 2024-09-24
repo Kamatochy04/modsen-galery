@@ -2,9 +2,9 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { BookMark } from "@/assets";
-import { useData } from "@/pages/Router";
+import { ImgDataForWorks, useData, useImgService } from "@/utils";
+
 import { Container, Button } from "..";
-import { ImgDataForWorks, useImgService } from "@/utils";
 
 import styles from "./imgCard.module.scss";
 

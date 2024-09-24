@@ -1,5 +1,6 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+
 import { MainLayout } from "./mainLayout/MainLayout";
 import { Main } from "./main/Main";
 import { ImgPage } from "./img/ImgPage";
@@ -10,7 +11,9 @@ interface DataContextType {
   setImgId: (data: number) => void;
 }
 
-const DataContext = createContext<DataContextType | undefined>(undefined);
+export const DataContext = createContext<DataContextType | undefined>(
+  undefined
+);
 
 const DataProvider = ({ children }: { children: ReactNode }) => {
   const [imgId, setImgId] = useState<number>(1);
@@ -20,14 +23,6 @@ const DataProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </DataContext.Provider>
   );
-};
-
-export const useData = () => {
-  const context = useContext(DataContext);
-  if (!context) {
-    throw new Error("useData must be used within a DataProvider");
-  }
-  return context;
 };
 
 export const Router = () => {

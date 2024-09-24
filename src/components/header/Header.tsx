@@ -1,6 +1,7 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FC, useEffect, useState } from "react";
-import { BookMark, HomeIcon, MuseumLogo } from "../../assets";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+import { BookMark, HomeIcon, MuseumLogo } from "@/assets";
 
 import { Container, Text } from "..";
 
@@ -16,15 +17,7 @@ export const Header: FC = () => {
 
   return (
     <>
-      <Container
-        padding="32px 0"
-        background="linear-gradient(
-        90deg,
-        #343333 16.73%,
-        #484848 58.63%,
-        #282828 98.63%
-      )"
-      >
+      <Container variant="header">
         <Container variant="container">
           <Container variant="flex-container">
             <Link to={"/"}>
@@ -40,12 +33,7 @@ export const Header: FC = () => {
                 onClick={() => navigate("/favorites")}
               >
                 <BookMark />
-                <Text
-                  fontSize="18px"
-                  fontWeight="400"
-                  color="var(--light-color)"
-                  cursor="pointer"
-                >
+                <Text variant="header" cursor="pointer">
                   Your favorites
                 </Text>
               </Container>
@@ -67,12 +55,7 @@ const HomeLink = () => {
       onClick={() => navigate("/")}
     >
       <HomeIcon />
-      <Text
-        fontSize="18px"
-        fontWeight="400"
-        color="var(--light-color)"
-        cursor="pointer"
-      >
+      <Text variant="header" cursor="pointer">
         Home
       </Text>
     </Container>
